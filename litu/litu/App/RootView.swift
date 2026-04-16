@@ -25,15 +25,6 @@ struct RootView: View {
     @State private var llmEvaluator = LLMEvaluator()
     @State private var chatModel = ChatModel()
     @State private var deviceStat = DeviceStat()
-        
-    @State private var levelPlanner: LevelPlannerService = {
-        // This closure will run after `llmEvaluator` has its default value.
-        // We'll create a temporary evaluator to avoid referencing `self` before init.
-        let evaluator = LLMEvaluator()
-        let gamechatModel = ChatModel()
-        return LevelPlannerService(llm: evaluator, chatModel: gamechatModel)
-    }()
-
     @State private var penaltyPlanner: SoccerPenaltyPlannerService = {
         let evaluator = LLMEvaluator()
         let chatModel = ChatModel()
