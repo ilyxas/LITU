@@ -7,6 +7,8 @@ struct RootView: View {
     private enum Section: String, CaseIterable, Identifiable {
         case soccerPenalty = "Penalty"
         case localLLM = "Local LLM"
+        case tcpServer = "TCP Server"
+        case tcpClient = "TCP Client"
         
 
         var id: Self { self }
@@ -15,11 +17,13 @@ struct RootView: View {
             switch self {
             case .soccerPenalty: return "soccerball"
             case .localLLM: return "message"
+            case .tcpServer: return "network"
+            case .tcpClient: return "client"
             }
         }
     }
 
-    @State private var selection: Section = .soccerPenalty
+    @State private var selection: Section = .tcpClient
     @State private var isImporting = false
     @State private var importError: String? = nil
     @State private var llmEvaluator = LLMEvaluator()
@@ -39,6 +43,10 @@ struct RootView: View {
                     LocalLLMView(llm: llmEvaluator, chatModel: chatModel, deviceStat: deviceStat)
                 case .soccerPenalty:
                     SoccerPenaltyView(planner: penaltyPlanner)
+                case .tcpServer:
+                    TCPServerTestView()
+                case .tcpClient:
+                    TCPClientTestView()
                 }
             }
             .toolbar {
@@ -53,6 +61,11 @@ struct RootView: View {
                                 selection = .soccerPenalty
                             } label: {
                                 Label("Penalty", systemImage: "soccerball")
+                            }
+                            Button {
+                                selection = .tcpClient
+                            } label: {
+                                Label("TCP Client", systemImage: "client")
                             }
                         } label: {
                             Image(systemName: "square.grid.2x2")
