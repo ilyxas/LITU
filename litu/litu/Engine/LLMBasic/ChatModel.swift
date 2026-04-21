@@ -65,6 +65,7 @@ public final class ChatModel {
     public var isBusy: Bool {
         task != nil
     }
+    
 
     public var hasSession: Bool {
         session != nil

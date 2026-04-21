@@ -72,7 +72,7 @@ class LLMEvaluator {
 //        GenerateParameters(maxTokens: maxTokens, temperature: 0.6)
 //    }
     
-    var selectedModel = LMModel(name: "llama3_2_3B_4bit", configuration: LLMRegistry.llama3_2_3B_4bit, type: .llm)
+    var selectedModel = LMModel(name: "qwen2_5_7b", configuration: LLMRegistry.qwen2_5_7b, type: .llm)
     
     var modelConfiguration: ModelConfiguration {
         selectedModel.configuration
